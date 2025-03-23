@@ -16,3 +16,5 @@ To be honest this is not about extending range of RS485 loop, even though it can
 - Microcontroller code: `Raspberry Pi Pico Extension for VSCode`
 - Knowledge: `IDK`
 
+## Hardware
+![PCB render](./Hardware/3D-Model/Renders/01.png){:width="200px"}
