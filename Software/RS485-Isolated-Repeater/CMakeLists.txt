@@ -33,8 +33,10 @@ project(RS485-Isolated-Repeater C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
+# Add src catalog directory
+add_subdirectory(src)
 
+# Add executable.
 add_executable(RS485-Isolated-Repeater main.cpp )
 
 pico_set_program_name(RS485-Isolated-Repeater "RS485-Isolated-Repeater")
@@ -46,17 +48,24 @@ pico_enable_stdio_usb(RS485-Isolated-Repeater 1)
 
 # Add the standard library to the build
 target_link_libraries(RS485-Isolated-Repeater
-        pico_stdlib)
+    pico_stdlib
+    repeater_lib
+    hardware_gpio
+    hardware_timer
+    hardware_clocks
+    hardware_watchdog
+    hardware_irq
+)
 
 # Add the standard include files to the build
 target_include_directories(RS485-Isolated-Repeater PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${PROJECT_SOURCE_DIR}/src
 )
 
 # Add any user requested libraries
 target_link_libraries(RS485-Isolated-Repeater 
-        hardware_watchdog
-        )
+    hardware_watchdog
+)
 
 pico_add_extra_outputs(RS485-Isolated-Repeater)
-
